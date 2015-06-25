@@ -2,14 +2,16 @@ package com.codepath.android.booksearch.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.codepath.android.booksearch.R;
-import com.codepath.android.booksearch.adapters.BookAdapter;
+import com.codepath.android.booksearch.adapters.BookRecyclerAdapter;
 import com.codepath.android.booksearch.models.Book;
 import com.codepath.android.booksearch.net.BookClient;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
@@ -21,20 +23,31 @@ import java.util.ArrayList;
 
 
 public class BookListActivity extends ActionBarActivity {
-    private ListView lvBooks;
-    private BookAdapter bookAdapter;
+    private BookRecyclerAdapter bookAdapter;
     private BookClient client;
+    private RecyclerView rvBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fresco.initialize(this);
+
         setContentView(R.layout.activity_book_list);
-        lvBooks = (ListView) findViewById(R.id.lvBooks);
+        rvBooks = (RecyclerView) findViewById(R.id.rvBooks);
+
+        // Setting the LayoutManager.
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.scrollToPosition(0);
+
+        //Set LayoutManager to RecyclerView
+        rvBooks.setLayoutManager(layoutManager);
         ArrayList<Book> aBooks = new ArrayList<Book>();
         // initialize the adapter
-        bookAdapter = new BookAdapter(this, aBooks);
-        // attach the adapter to the ListView
-        lvBooks.setAdapter(bookAdapter);
+        bookAdapter = new BookRecyclerAdapter(aBooks);
+        // attach the adapter to the RecyclerView
+        rvBooks.setAdapter(bookAdapter);
         // Fetch the data remotely
         fetchBooks("Oscar Wilde");
     }
@@ -48,18 +61,13 @@ public class BookListActivity extends ActionBarActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     JSONArray docs = null;
-                    if(response != null) {
+                    if (response != null) {
                         // Get the docs json array
                         docs = response.getJSONArray("docs");
                         // Parse json array into array of model objects
                         final ArrayList<Book> books = Book.fromJson(docs);
-                        // Remove all books from the adapter
-                        bookAdapter.clear();
-                        // Load model objects into the adapter
-                        for (Book book : books) {
-                            bookAdapter.add(book); // add book through the adapter
-                        }
-                        bookAdapter.notifyDataSetChanged();
+
+                        bookAdapter.updateList(books);
                     }
                 } catch (JSONException e) {
                     // Invalid JSON format, show appropriate error.
