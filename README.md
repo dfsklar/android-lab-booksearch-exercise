@@ -2,8 +2,6 @@
 
 Android app that leverages the [OpenLibrary API](https://openlibrary.org/developers/api) to search books and display cover images. This app is to be used as the base app for adding suggested extensions.
 
-![Imgur](http://i.imgur.com/NJmF42Yl.png)
-
 ## Overview
 
 The app does the following:
@@ -38,5 +36,5 @@ This app is intended to be the base project on top of which new features can be 
 This app leverages two third-party libraries:
 
  * [Android AsyncHTTPClient](http://loopj.com/android-async-http/) - For asynchronous network requests
- * [Picasso](http://square.github.io/picasso/) - For remote image loading
+ * [Fresco](https://github.com/facebook/fresco) - For remote image loading
 # android-facebook-booksearch-exercise
