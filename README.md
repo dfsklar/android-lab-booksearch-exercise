@@ -22,7 +22,7 @@ To achieve this, there are four different components in this app:
 ## Usage
 This app is intended to be the base project on top of which new features can be added. To use it, clone the project and import it using the following steps:
 
-![Imgur](http://i.imgur.com/joPKoTk.gif)
+![Imgur](http://i.imgur.com/x5iXb8Y.gif)
 
 ### Goal
 
@@ -44,7 +44,7 @@ Pair up and build a book search app that searches the [OpenLibrary API](https://
   * Test to verify that the app runs without any errors.
   * If your app loads successfully, you should see the following output:
 
-    ![Screenie|300](http://i.imgur.com/x5iXb8Y.png)
+    ![Screenie|300](http://i.imgur.com/0zLvR7c.png)
 
 3. Add SearchView to ActionBar
   * The app should allow you to search for books by its author or title. One of the preferred way to do this is by using a SearchView.
