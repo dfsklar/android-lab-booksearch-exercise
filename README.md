@@ -38,13 +38,13 @@ Pair up and build a book search app that searches the [OpenLibrary API](https://
   * The app connects to the OpenLibrary API and displays a list of books. You will be building new features on top of this app.
   * Clone [android-booksearch-exercise repo](https://github.com/codepath/android-booksearch-exercise) on your machine. Import the project in IntelliJ:
 
-    ![Import|600](http://i.imgur.com/joPKoTk.gif)
+    ![Import|600](http://i.imgur.com/x5iXb8Y.gif)
 
 2. Test your app
   * Test to verify that the app runs without any errors.
   * If your app loads successfully, you should see the following output:
 
-    ![Screenie|300](http://i.imgur.com/24sG8oc.png)
+    ![Screenie|300](http://i.imgur.com/x5iXb8Y.png)
 
 3. Add SearchView to ActionBar
   * The app should allow you to search for books by its author or title. One of the preferred way to do this is by using a SearchView.
