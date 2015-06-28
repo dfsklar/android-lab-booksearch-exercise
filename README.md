@@ -44,7 +44,7 @@ Pair up and build a book search app that searches the [OpenLibrary API](https://
   * Test to verify that the app runs without any errors.
   * If your app loads successfully, you should see the following output:
 
-    ![Screenie|300](http://i.imgur.com/6jwMstA.png)
+    ![Screenie|300](http://i.imgur.com/Ai9SHzB.png)
 
 3. Add SearchView to ActionBar
   * The app should allow you to search for books by its author or title. One of the preferred way to do this is by using a SearchView.
