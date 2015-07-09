@@ -5,7 +5,7 @@
     android:orientation="vertical"
     tools:context=".BookListActivity">
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/ivBookCover"
         android:layout_marginTop="8dp"
         android:layout_width="280dp"
