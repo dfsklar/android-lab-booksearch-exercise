@@ -29,6 +29,9 @@ public class BookDetailActivity extends ActionBarActivity {
 
         // Use book object to populate data into views
         tvTitle.setText(bk.getTitle());
+
+        // Show book title in the app bar
+        getSupportActionBar().setTitle(bk.getTitle());
     }
 
 
