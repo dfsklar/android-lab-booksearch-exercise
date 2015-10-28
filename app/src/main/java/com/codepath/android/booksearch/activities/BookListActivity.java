@@ -52,7 +52,7 @@ public class BookListActivity extends ActionBarActivity {
         // attach the adapter to the RecyclerView
         rvBooks.setAdapter(bookAdapter);
         // Fetch the data remotely
-        // fetchBooks("Oscar Wilde");
+        fetchBooks("library");
     }
 
     // Executes an API call to the OpenLibrary search endpoint, parses the results
@@ -69,7 +69,6 @@ public class BookListActivity extends ActionBarActivity {
                         docs = response.getJSONArray("docs");
                         // Parse json array into array of model objects
                         final ArrayList<Book> books = Book.fromJson(docs);
-
                         bookAdapter.updateList(books);
                     }
                 } catch (JSONException e) {
@@ -97,6 +96,7 @@ public class BookListActivity extends ActionBarActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
+                // I think I would use this for autocompletion UX
                 return false;
             }
         });

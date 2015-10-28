@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.android.booksearch.R;
+import com.codepath.android.booksearch.models.Book;
 
 public class BookDetailActivity extends ActionBarActivity {
     private ImageView ivBookCover;
@@ -24,8 +25,10 @@ public class BookDetailActivity extends ActionBarActivity {
         tvAuthor = (TextView) findViewById(R.id.tvAuthor);
 
         // Extract book object from intent extras
+        Book bk = (Book)(getIntent().getSerializableExtra("book"));
 
         // Use book object to populate data into views
+        tvTitle.setText(bk.getTitle());
     }
 
 
