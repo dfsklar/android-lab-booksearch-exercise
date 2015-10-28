@@ -1,9 +1,11 @@
 package com.codepath.android.booksearch.activities;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 
 public class BookListActivity extends ActionBarActivity {
@@ -49,7 +52,7 @@ public class BookListActivity extends ActionBarActivity {
         // attach the adapter to the RecyclerView
         rvBooks.setAdapter(bookAdapter);
         // Fetch the data remotely
-        fetchBooks("Oscar Wilde");
+        // fetchBooks("Oscar Wilde");
     }
 
     // Executes an API call to the OpenLibrary search endpoint, parses the results
@@ -81,7 +84,24 @@ public class BookListActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_book_list, menu);
-        return true;
+
+        // Set up handling of the search sliver
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchEntryBox = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchEntryBox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                fetchBooks(s);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
